@@ -17,9 +17,9 @@
 
 Worksheets is a LaTeX project to create worksheets, mostly relating to mathematics, populated with randomly generated questions and answers that can be easily reproduced.  It will require that you have a recent distribution of both LaTeX and Sage Math installed on your system in order to compile the `*.tex` and `*.sagetex.sage` files.  All files in this repository were compiled using my current 2017 Macbook setup:
 
-- macOS 10.15.5,
-- MacTeX-2020,
-- SageMath 9.1. 
+- macOS 11.4,
+- MacTeX-2021,
+- SageMath 9.4. 
 
 The repository is made up three main folders in the `worksheets` folder.
 
@@ -30,11 +30,12 @@ The repository is made up three main folders in the `worksheets` folder.
 
 ## texmf Files
 
-This project comes with **3** style files that can either be placed in the folder where your `foo.tex` files are stored (not recommended) or in your local `texmf` folder (recommended):
+This project is dependent upon some custom style files that can either be placed in the folder where your `foo.tex` files are stored (not recommended) or in your local `texmf` folder (recommended):
 
-1. markolsonworksheet.sty [Required]
-1. markolsoncolorsthlm.sty [Required]
-1. markolsonmath.sty [Optional]
+1. mhoworksheet.sty [Required],
+1. mhocolorthemenord.sty [Required] and
+1. mhomath.sty [Required].
+
 
 I store these files in my `/usr/local/texlive/texmf-local/tex/latex/` directory, but your local `texmf` directory might have some other path.  Remember to `texhash` after moving your files.
 
