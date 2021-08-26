@@ -5,7 +5,7 @@
 
 <p align="center">
     <a href = "https://www.sagemath.org">
-        <img src="https://img.shields.io/badge/SageMath-9.1-blue.svg" />
+        <img src="https://img.shields.io/badge/SageMath-9.4-blue.svg" />
     </a>
         <img src="https://img.shields.io/badge/LaTeX-orange.svg" />
 				<img src="https://img.shields.io/badge/sagetex-orange.svg" />
