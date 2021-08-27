@@ -21,6 +21,36 @@ Worksheets is a LaTeX project to create worksheets, mostly relating to mathemati
 - MacTeX-2021,
 - SageMath 9.4. 
 
+---
+
+# Available Worksheets
+
+## Sets
+
+### Set of Positive Integers
+- [001C](LatexSageMath/001B.pdf) Finding a product of two positive integers on the interval [1, 13]. 
+
+
+#### Column Arithmetic Operation
+- [001B](LatexSageMath/001B.pdf) Finding a product using column multiplication of a three digit and a four digit positive integer.
+
+#### Factoring Positive Integers
+- [001A](LatexSageMath/001A.pdf) Expressing positive integers on the interval [2,100] as a product of prime number factors.
+
+## Trigonometry
+
+## Unit Circle
+- [0018](LatexMath/0018.pdf) Unit circle complete with angles in expressed in degrees and radians for angles of multiples of 30, 60 and 90 degrees.  Also included, are the polar coordinates values for each of these special angles. & % Description
+
+
+## Statistics
+
+### Linear Regression
+- [0019](LatexMath/0019.pdf) Linear regression data set for the swimming 100m freestyle event for the gold medal winners.
+
+---
+
+
 The repository is made up three main folders in the `worksheets` folder.
 
 1. texmf (`*.sty` files found here)
