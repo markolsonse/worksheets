@@ -1,0 +1,87 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-05-25
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhoworksheet}
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{sagesilent}
+# Generate and set a random seed.
+t=ZZ.random_element(999999)
+set_random_seed(t)
+
+# Generate lists and assign variables
+a=[ZZ.random_element(0,360) for i in range(60)]
+
+# Generate the answer list
+answera=[(a[i]/180)*pi for i in range(len(a))]
+		
+qoutput=""
+aoutput=""
+
+# Implicit 1's 
+for n in range(len(a)):
+  if (answera[n])==1:
+    answer[n]=''
+
+for i in range(len(a)):
+  qoutput += r"\item $ \displaystyle{%s} $" %(latex(answera[i]))
+  aoutput += r"\item \cRed{$ %s \degree$}" %(a[i])
+
+\end{sagesilent}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	WORKSHEET INSTRUCTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\centering{Convert the angular measurement from radians to degrees}\\
+\vspace{0.5cm}
+
+\begin{multicols}{6}
+\begin{enumerate}
+\sagestr{qoutput}
+\end{enumerate}
+\end{multicols}
+
+\vfill
+\cuthere
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	ANSWERS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{multicols}{6}
+\begin{enumerate}
+\sagestr{aoutput}
+\end{enumerate}
+\end{multicols}
+\customfoot
+\end{document}
