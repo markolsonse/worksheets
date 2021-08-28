@@ -49,10 +49,10 @@ qoutput=""
 aoutput=""
 
 for i in range(len(r)):
-  qoutput +=fr"\item \( \{trigf} \left( {farg[i]} \degree \right) \) \hfill = \framebox[10ex]{{\phantom{{\( \dfrac{{\sqrt{{a}}}}{{b}} \)}}}}"
+  qoutput +=fr"\item \( \{trigf} \left( {farg[i]} \degree \right) \) = \hfill  \framebox[10ex]{{\phantom{{\( \dfrac{{\sqrt{{a}}}}{{b}} \)}}}}"
 
 for i in range(len(r)):
-  aoutput +=fr"\item \( \{trigf} \left( {farg[i]} \degree \right) \) \hfill = \framebox[10ex]{{\(\cRed{{ {ans[i]} }}\phantom{{\dfrac{{\sqrt{{2}}}}{{2}}}} \)}}"
+  aoutput +=fr"\item \( \{trigf} \left( {farg[i]} \degree \right) \) = \hfill  \framebox[10ex]{{\(\cRed{{ {ans[i]} }}\phantom{{\dfrac{{\sqrt{{2}}}}{{2}}}} \)}}"
 
 
 \end{sagesilent}
