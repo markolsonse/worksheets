@@ -42,6 +42,8 @@ Worksheets is a LaTeX project to create worksheets, mostly relating to mathemati
 ## Unit Circle
 - [0018](LatexMath/0018.pdf) Unit circle complete with angles in expressed in degrees and radians for angles of multiples of 30, 60 and 90 degrees.  Also included, are the polar coordinates values for each of these special angles. & % Description
 
+## Function Values for angles that are multiples of 30 and 45 degrees
+- [001F](LatexSageMath) Finding the value of \(\cos \theta \), where \( \theta \) is a multiple of 30 or 45 degrees in the first quadrant.
 
 ## Statistics
 
