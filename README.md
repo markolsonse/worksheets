@@ -28,7 +28,7 @@ Worksheets is a LaTeX project to create worksheets, mostly relating to mathemati
 ## Sets
 
 ### Set of Positive Integers
-- [001C](LatexSageMath/001B.pdf) Finding a product of two positive integers on the interval [1, 13]. 
+- [001C](LatexSageMath/001C.pdf) Finding a product of two positive integers on the interval [1, 13]. 
 
 
 #### Column Arithmetic Operation
