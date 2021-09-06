@@ -1,0 +1,129 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-05-25
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhoworksheet}
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%   SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%   WORKSHEET INSTRUCTIONS
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{center}
+\Huge{\cDarkGrey{Sketching the Sine Curve}}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, auto]
+% Place nodes
+\node[task](1){Draw principal axis \( y = D \) };
+\node[decision, right= of 1] (2) { \( B<0 \)};
+\node[task, right= of 2] (3) { \( (-Bx \pm C) = -1(Bx\mp C) \)};
+\node[task, below= of 3] (4) { \( A \sin [-1(Bx\mp C)] = -A \sin(Bx \mp C) \)};
+\node[task, left= of 4] (5) { \( P = \dfrac{360 \degree}{ \lvert B \rvert} \)};
+\node[task, left= of 5] (6) { \( HS = -\dfrac{C}{B} \)};
+
+\node[abscissa, below= of 5, node distance=2.0cm] (7) {\( x_0 = HS \)};
+\node[abscissa, below= of 7] (8) {\( x_1 = HS + \dfrac{P}{4} \)};
+\node[abscissa, below= of 8] (9) {\( x_2 = HS + \dfrac{P}{2} \)};
+\node[abscissa, below= of 9] (10) {\( x_3 = HS + \dfrac{3P}{4} \)};
+\node[abscissa, below= of 10] (11) {\( x_4 = HS + P \)};
+
+\node[task, below= of 11] (12) {\( a = \lvert A \rvert \)};
+\node[decision, below= of 12] (13) {\( A > 0 \)};
+
+\node[ordinate, left= of 11] (14) {\( y_4 = D \)};
+\node[ordinate, above= of 14] (15) {\( y_3 = D-a \)};
+\node[ordinate, above= of 15] (16) {\( y_2 = D \)};
+\node[ordinate, above= of 16] (17) {\( y_1 = D+a \)};
+\node[ordinate, above= of 17] (18) {\( y_0 = D \)};
+
+\node[ordinate, right= of 11] (19) {\( y_4 = D \)};
+\node[ordinate, above= of 19] (20) {\( y_3 = D+a \)};
+\node[ordinate, above= of 20] (21) {\( y_2 = D \)};
+\node[ordinate, above= of 21] (22) {\( y_1 = D-a \)};
+\node[ordinate, above= of 22] (23) {\( y_0 = D \)};
+
+\node[bluedotted, fit =(7)(8)(9)(10)(11)](boxabscissa) {};
+\node [above of =7,  node distance=1.2cm] {\cBlue{\textbf{Abscissae}}};
+
+\node[reddotted, fit =(14)(15)(16)(17)(18)](boxordinate1) {};
+\node [above of =23,  node distance=1.2cm] {\cRed{\textbf{Ordinates}}};
+
+\node[reddotted, fit =(19)(20)(21)(22)(23)](boxordinate2) {};
+\node [above of =18,  node distance=1.2cm] {\cRed{\textbf{Ordinates}}};
+
+\node[pointcircle, left=of 14](25) {\( P_4 \)};
+\node[pointcircle, left=of 15](26) {\( P_3 \)};
+\node[pointcircle, left=of 16](27) {\( P_2 \)};
+\node[pointcircle, left=of 17](28) {\( P_1 \)};
+\node[pointcircle, left=of 18](29) {\( P_0 \)};
+
+\node[pointcircle, right=of 19](30) {\( P_4 \)};
+\node[pointcircle, right=of 20](31) {\( P_3 \)};
+\node[pointcircle, right=of 21](32) {\( P_2 \)};
+\node[pointcircle, right=of 22](33) {\( P_1 \)};
+\node[pointcircle, right=of 23](34) {\( P_0 \)};
+% Draw Edges
+\path [line](1)--(2);
+\path [line](2)-- node[color=black]{Yes}(3);
+\path [line](3)--(4);
+\path [line](4)--(5);
+\path [line](2)--node[color=black]{No}(5);
+\path [line](5)--(6);
+\path [line](6) edge   [bend left=10] (7);
+\path [line](7)--(8);
+\path [line](8)--(9);
+\path [line](9)--(10);
+\path [line](10)--(11);
+\path [line](12)--(13);
+\path [line](11)--(12);
+\path [line](13) edge [bend left=30] node[color=black, left]{Yes}(14);
+\path [line](13) edge [bend left=-30] node[color=black, right]{No}(19);
+\path [line](14)--(15);
+\path [line](15)--(16);
+\path [line](16)--(17);
+\path [line](17)--(18);
+\path [line](19)--(20);
+\path [line](20)--(21);
+\path [line](21)--(22);
+\path [line](22)--(23);
+\end{tikzpicture}
+\end{center}
+\customfootnosage
+
+\end{document}
