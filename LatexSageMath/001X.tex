@@ -1,0 +1,112 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-05-25
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhoworksheet}
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{sagesilent}
+t=ZZ.random_element(999999)
+set_random_seed(t)
+
+# Number of Questions
+questionNumber=60
+
+# Generate a list of Special Angles
+angles=[]
+anglesM30=[n*(pi/6) for n in range(0,4)]
+anglesM45=[n*(pi/4) for n in range(0,3)]
+for i in range(len(anglesM30)):
+    angles.append(anglesM30[i])
+for i in range(len(anglesM45)):
+    angles.append(anglesM45[i])
+angles = sorted(set(angles))
+
+# Create a random list of angles to be used as function arguments
+randomAngle=[angles[ZZ.random_element(len(angles))] for i in range(questionNumber)]
+constantAngle=randomAngle
+# Create a random list of trig functions
+randPosition=[ZZ.random_element(0,3) for i in range(questionNumber)]
+trigf=[]
+ans=[]
+
+for j in range(len(randPosition)):
+    if randPosition[j] ==0:
+        trigf.append(sin)
+        ans.append(sin(randomAngle[j]))
+    elif randPosition[j] ==1:
+        trigf.append(cos)
+        ans.append(cos(randomAngle[j]))
+    else:
+        trigf.append(tan)
+        ans.append(tan(randomAngle[j]))
+
+qoutput=""
+aoutput=""
+
+for i in range(questionNumber):
+    qoutput +=rf"\item \( {latex(trigf[i])} \left( {latex(constantAngle[i])} \right) \) \hfill \framebox[10ex]{{\( \phantom{{ \dfrac{{\sqrt{{a}}}}{{b}} }} \)}}"
+
+    aoutput +=rf"\item \( {latex(trigf[i])} \left( {latex(constantAngle[i])} \right)\) \hfill \framebox[10ex]{{\hskip 1.5em \( \cRed{{ {latex(ans[i])} }} \phantom{{ \dfrac{{\sqrt{{a}}}}{{b}} }} \)}}"
+
+\end{sagesilent}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	WORKSHEET INSTRUCTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{center}
+  Write down the exact value of the trigonometric function for the given argument.
+\end{center}
+\vspace{0.5cm}
+
+
+\begin{multicols}{4}
+
+\begin{enumerate}
+\sagestr{qoutput}
+\end{enumerate}
+\end{multicols}
+\customfoot
+\newpage
+
+\answers
+\begin{center}
+  Note that \( \infty \) represents an undefined value.
+\end{center}
+\begin{multicols}{4}
+
+\begin{enumerate}
+\sagestr{aoutput}
+\end{enumerate}
+\end{multicols}
+\customfoot
+\end{document}
