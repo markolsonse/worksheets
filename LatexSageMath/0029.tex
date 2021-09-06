@@ -1,0 +1,87 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-05-25
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhoworksheet}
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{sagesilent}
+t=ZZ.random_element(999999)
+set_random_seed(t)
+numberOfQuestions = 48
+
+ak = []
+bk = []
+gcdk = []
+
+while len(gcdk) < numberOfQuestions:
+    a = (ZZ.random_element(2,101))
+    b = (ZZ.random_element(2,101))
+    if gcd(a,b) != 1:
+        ak.append(a)
+        bk.append(b)
+        gcdk.append(gcd(a,b))
+
+qoutput = ""
+aoutput = ""
+
+for i in range(len(gcdk)):
+  qoutput += rf"\item \( \hcf({ak[i]}, {bk[i]})  \) "
+  aoutput += rf"\item \cRed{{ \( \hcf( {ak[i]}, {bk[i]} ) = {gcdk[i]} \) }}"
+\end{sagesilent}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	WORKSHEET INSTRUCTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{center}
+  Find the highest common factor, greatest common divisor, of the given positive integers.
+\end{center}
+\vspace{0.5cm}
+
+
+\begin{multicols}{4}
+
+\begin{enumerate}
+\sagestr{qoutput}
+\end{enumerate}
+\end{multicols}
+\vspace{0.5cm}
+\answers
+\begin{center}
+\end{center}
+\begin{multicols}{4}
+\begin{enumerate}
+\sagestr{aoutput}
+\end{enumerate}
+\end{multicols}
+\customfoot
+\end{document}
