@@ -1,0 +1,89 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-05-25
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhoworksheet}
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{sagesilent}
+
+t=ZZ.random_element(999999)
+set_random_seed(t)
+
+a=[(ZZ.random_element(0,26)) for i in range(36)]
+b=[(ZZ.random_element(0,26)) for i in range(len(a))]
+c=[(ZZ.random_element(0,26)) for i in range(len(a))]
+d=[(ZZ.random_element(0,26)) for i in range(len(a))]
+
+for j in range(len(c)):
+  while (c[j]-a[j])==0:
+    c[j]=ZZ.random_element(0,26)
+    a[j]=ZZ.random_element(0,26)
+
+answer=[latex(((d[i]-b[i])/(c[i]-a[i]))*x+(b[i]-(((d[i]-b[i])/(c[i]-a[i]))*a[i]))) for i in range(len(a))]
+
+qoutput=""
+aoutput=""
+
+for i in range(len(a)):
+  qoutput += r"\item $P_1(%s, %s)$ , $P_2(%s, %s)$" %(a[i],b[i],c[i],d[i])
+  aoutput += r"\item \cRed{$y=%s$}" %(answer[i])
+
+\end{sagesilent}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	WORKSHEET INSTRUCTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\centering{Find the equation of the line in slope-intercept form given two collinear points.}\\
+\vspace{0.5cm}
+
+\begin{multicols}{3}
+\begin{enumerate}
+\sagestr{qoutput}
+\end{enumerate}
+\end{multicols}
+
+\vfill
+\cuthere
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	ANSWERS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{multicols}{3}
+\begin{enumerate}
+\sagestr{aoutput}
+\end{enumerate}
+\end{multicols}
+\customfoot
+\end{document}
+
