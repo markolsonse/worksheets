@@ -1,0 +1,131 @@
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+%             _             _
+%            | |           | |
+%  _ __ ___  | |__    ___  | | ___   ___   _ __       ___   ___   _ __ ___
+% | '_ ` _ \ | '_ \  / _ \ | |/ __| / _ \ | '_ \     / __| / _ \ | '_ ` _ \
+% | | | | | || | | || (_) || |\__ \| (_) || | | | _ | (__ | (_) || | | | | |
+% |_| |_| |_||_| |_| \___/ |_||___/ \___/ |_| |_|(_) \___| \___/ |_| |_| |_|
+%
+% Author: Mark H. Olson
+% Website: https://mholson.com
+% Github: https://github.com/mholson
+%
+% Created: 2021-09-13
+%=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% DOCUMENT CLASS & PACKAGES
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{mhocolorthemenord}
+\usepackage{mhomath}
+\usepackage{mhotikz}
+\usepackage{mhotables}
+\usepackage{mhoworksheet}
+
+% > > > SETUP THE MARGINS
+
+\addtolength{\oddsidemargin}{1in}
+\addtolength{\evensidemargin}{1in}
+\addtolength{\textwidth}{-2in}
+%\addtolength{\topmargin}{-1.25in}
+%\addtolength{\textheight}{2.5in}
+
+% > > > Code From
+%  https://tex.stackexchange.com/questions/37707/triangular-numbers-in-tikz
+\newlength\radius
+\pgfmathsetlength{\radius}{0.5cm}
+\newcommand\drawballs[2][]{%
+    \foreach \y [evaluate=\y as \yy using #2+1-\y] in {1,...,#2} {%
+        \foreach \x in {1,...,\yy} {%
+            \shade[shading=ball,ball color=\cnBlue,#1] 
+                ({(2*\x-2+\y)*\radius},{sqrt(3)*\y*\radius}) circle (\radius); 
+        };
+    }%
+}
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% BEGIN DOCUMENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%   SAGE SILENT
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%   WORKSHEET INSTRUCTIONS
+%=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{center}
+\Huge{\cDarkGrey{Triangular Numbers}}
+\end{center}
+
+\vspace{0.5cm}
+\begin{center}
+\includegraphics{tikz/0033}
+\end{center}
+\vspace{0.5cm}
+
+If we start with one ball, we can generate an equilateral triangles by adding a 
+row of balls below the first ball such that all sides have a length of two balls. 
+If we let the variable \( n \) represent the position of the object in a list, 
+then ball one would have position \( n = 1 \) and the equilateral triangle with 
+side length two would have position \( n = 2 \).  To generate the triangle at 
+position \( n = 3 \) in the list, we would add another row of balls to the bottom
+of the triangle such that each side of the triangle would have a length of three 
+balls.
+
+\begin{enumerate}
+    \item What is the side length of the equilateral triangle located at position 
+    \( n = 4 \) in the list?
+    \item What is the side length of the equilateral triangle located as position 
+    \( n = 5 \) in the list?  \emph{It might be helpful to draw the triangle}.
+    \item What does the value of the position, \( n \), in the list tell 
+    us about the triangle?
+    \item Each object in the list that is located at position \( n \) is made up 
+    \( T_n \) balls.  For example, ball at position \( n = 2 \) is made up of 
+    \( T_2 = 3 \) balls.  \( T_n \) is a special list of numbers that we will call 
+    the \defw{sequence} of triangular numbers.  Complete the table below. \emph{It might be helpful 
+    draw each triangle}.
+    \begin{center}
+        \(
+        \begin{tblr}
+        {
+          colspec={| c | c | c | c | c | c | c | c | c |},
+          width = 0.9\linewidth,
+          row{odd} = {nordFour},
+          row{even} = {nordSix},
+          rowhead = 1,
+          rowfoot = 0,
+        }
+        \hline
+         \SetRow{nordNine} n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+        \hline
+          T_n & 1 & 3 & 6 & \phantom{999} & \phantom{999} & \phantom{999} & \phantom{999} & \phantom{999} \\
+            \hline
+          \end{tblr}
+          \)
+        \end{center}
+          \item There is a formula for calculating the number of balls that make up 
+          the triangle, \( T_n \), for any position \( n \) in the triangular number
+          sequence:
+          \[
+            T_n = \dfrac{n (n + 1)}{2}.  
+          \]
+          Can you explain using a picture how this formula is working?  
+          Hint:  You might want to consider the area of a triangle formula: 
+          \[ 
+              A_{\triangle} = \dfrac{\text{base} \times \text{height}}{2}. 
+            \]
+
+\end{enumerate}
+
+\customfootnosage
+\end{document}
